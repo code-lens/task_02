@@ -1,0 +1,56 @@
+use std::io;
+//exponential function
+fn pow(num1: i32,mut num2: i32)-> i32
+{
+ let mut ans=1;
+
+ while num2!=0
+ {
+   ans=ans*num1;
+   num2=num2-1;
+  }
+  return ans;
+}
+//to find the number of digits
+fn count(num: i32) -> i32
+{
+  let mut digit=0;
+  let mut div=num;
+  while div!=0
+  {
+    digit=digit+1;
+    div=div/10;
+  }
+  return digit;
+}
+//to check for armstrong number
+fn armstr(num: i32) -> i32
+{
+  let dig=count(num);
+ let mut rem=num;
+ let mut  sum=0;
+ while rem!=0
+ {
+   sum=sum+(pow(rem%10,dig));
+   rem=rem/10;
+ }
+ return sum;
+} 
+//take input and give output accordingly
+fn main()
+{ 
+ println!("Enter a number");
+ let mut input = String::new();
+ io::stdin().read_line(&mut input).unwrap();
+ let num: i32 = input.trim().parse().unwrap();
+ let summ=armstr(num);
+ if num==summ
+ {
+   println!("The number entered is an Armstrong number");
+ }
+ else
+ {
+   println!("The number entered is not an Armstrong number");
+ }
+ 
+}
